@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Bookings</title>
+    <link rel="stylesheet" href="/booking/style.css">
+</head>
+<body>
+    <!-- navbar -->
+        <nav class="navbar">
+            <div class="navbar_left">
+                <ul>
+                    <li>
+                        <img src="./assets/tata.png" height="30" width="65" >
+                    </li>
+                   
+                    <li><a href="Boooking.html">book now</a> </li>
+                    <li> <a href="history.html">view Bookings</a> </li>
+                     <li><a href="preview.html">preview</a></li>
+                </ul>
+            </div>
+            <div class="navbar_right">
+                <ul>
+                    <li>something</li>
+                    <li>something</li>
+                    <li>Profile</li>
+                </ul>
+            </div>
+        </nav>
+    <h2>Pre-Booked Rooms</h2>
+    <div id="bookings-container"></div>
+
+    <script>
+       
+        
+        // Function to fetch and display bookings
+        function displayPreBookings() {
+            const lastBooked=localStorage.getItem("bookingData");
+            let lastData= lastBooked?JSON.parse(lastBooked) : null; 
+            fetch("bookings.json")
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("bookings-container");
+                    data.unshift(lastData);
+                    data.map(booking => {
+                        const bookingElement = document.createElement("div");
+                        bookingElement.classList.add("booking-card");
+                        bookingElement.innerHTML = `
+                            <h3>${booking.location} - ${booking.block}</h3>
+                            <p><strong>Date:</strong> ${booking.date}</p>
+                            <p><strong>Time Slot:</strong> ${booking.timeSlot}</p>
+                            <p><strong>Purpose:</strong> ${booking.purpose}</p>
+                            <p><strong>Seats:</strong> ${booking.seats}</p>
+                            <p><strong>bookedTime:</strong> ${booking.bookedTime}</p>
+                        `;
+                        container.appendChild(bookingElement);
+                    });
+                })
+                .catch(error => console.error("Error loading JSON:", error));
+        }
+
+        // Call the function when the page loads
+        document.addEventListener("DOMContentLoaded", displayPreBookings);
+       
+    </script>
+</body>
+</html>
