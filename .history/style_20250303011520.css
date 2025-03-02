@@ -54,7 +54,6 @@
 }
 .container_left{
     display: flex;
-    flex-direction: column;
     align-items: center;
      
 }
@@ -153,9 +152,7 @@ button:active {
 
 .alert{
     position: absolute;
-    width: 100%;
-    left: 10px;
-    z-index: 3000;
+    bottom: 20px;
 }
 @media print {
     button { 

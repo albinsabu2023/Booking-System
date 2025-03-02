@@ -35,10 +35,6 @@
             <!-- <p id="welcome-note">Hello</p> -->
             <div class="container_left">
                 <img src="assets/workplace.svg"    alt="">
-                <div class="alert alert-success" id="alert" class="alert" role="alert"  style="display:none">
-                    A simple success alert—check it out!
-                    
-                </div> 
             </div>
             <div class="container_right">
                 <form action="preview.html" method="get" onsubmit=" bookRoom(event);return false;">
@@ -55,7 +51,7 @@
                   </div>
                   <div class="block">
                     <div><label for="block">Choose Building:</label></div>
-                    <div>
+                    <div></div>
                         <select name="blocks" id="blocks-select">
                         <option value="b1">block1</option>
                         <option value="b2">block1</option>
@@ -89,9 +85,12 @@
                     <div><input type="number" max="2000" min="1" id="seats"></div>
                   </div>
                   
-                  <button type="submit" class="btn-primary submit-btn " submit">Book</button>
+                  <button type="submit" id="submit">Book</button>
                  
-                 
+                 <div class="alert alert-success" id="alert" role="alert"  style="display:none">
+                    A simple success alert—check it out!
+                    
+                </div> 
                 </form>
                 
             </div>

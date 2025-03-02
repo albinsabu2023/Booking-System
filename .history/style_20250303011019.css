@@ -46,7 +46,7 @@
 }
 
 .container {
-    overflow-y: auto;
+    height: 80vh;
     display: flex;
     
     align-items: center;
@@ -54,7 +54,6 @@
 }
 .container_left{
     display: flex;
-    flex-direction: column;
     align-items: center;
      
 }
@@ -66,15 +65,23 @@
 .container_right {
     background: rgb(1, 240, 248, 0.1);
     border: 1px solid rgb(18, 125, 125);
-    margin-top: 20px;
+
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     max-width:40vw;
     width: 100%;
-    height:auto;
+    height: 70vh;
 }
+.loc , .block ,.date ,.time, .seats ,.purpose{ 
 
+    /* width:80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; */
+    /* display: flex; */
+
+}
 form {
     margin-top: 10px;
     display: flex;
@@ -144,18 +151,6 @@ button:active {
 }
 .preview h2{
     margin-bottom: 10px;
-}
-
-.submit-btn{
-    margin:10px;
-    border-radius: 10px;
-}
-
-.alert{
-    position: absolute;
-    width: 100%;
-    left: 10px;
-    z-index: 3000;
 }
 @media print {
     button { 

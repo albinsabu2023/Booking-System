@@ -155,7 +155,6 @@ button:active {
     position: absolute;
     width: 100%;
     left: 10px;
-    z-index: 3000;
 }
 @media print {
     button { 
