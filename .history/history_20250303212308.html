@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Bookings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- navbar -->
+        <nav class="navbar">
+            <div class="navbar_left">
+                <ul>
+                    <li>
+                        <img src="./assets/tata.png" height="30" width="65" >
+                    </li>
+                   
+                    <li><a href="index.html">book now</a> </li>
+                    <li> <a href="history.html">view Bookings</a> </li>
+                     <li><a href="preview.html">preview</a></li>
+                </ul>
+            </div>
+            <div class="navbar_right">
+                <ul>
+                    <li>something</li>
+                    <li>something</li>
+                    <li>Profile</li>
+                </ul>
+            </div>
+        </nav>
+    <h2>Pre-Booked Rooms</h2>
+    <div id="bookings-container" class="bookings-container"></div>
+
+    <script>
+       
+        
+        // Function to fetch and display bookings
+          const container = document.getElementById("bookings-container");
+        let data=JSON.parse(localStorage.getItem("bookingData"));
+        console.log(data);
+        data.forEach(booking => {
+          
+            const bookingElement = document.createElement("div");
+            bookingElement.classList.add("booking-card");
+                        bookingElement.innerHTML = `
+                            <div class="booking-options">
+                                <a href="#"> view</a>
+                                <image src="./assets/delete.png" alt="delete" height=20 id="remove-item" >
+                            </div>
+                            <div class="booking-img">
+                               <img src="./assets/${booking.bookingInfo.location}.jpg"  alt="logo">
+                            </div>
+                            <div class="booking-history-content">
+                                <h3>${booking.bookingInfo.location} - ${booking.bookingInfo.block}</h3>
+                                <p><strong>Date:</strong> ${booking.bookingInfo.date}</p>
+                                <p><strong>Time Slot:</strong> ${booking.bookingInfo.timeSlot}</p>
+                                <p><strong>Purpose:</strong> ${booking.bookingInfo.purpose}</p>
+                                <p><strong>Seats:</strong> ${booking.bookingInfo.seats}</p>
+                                <p><strong>bookedTime:</strong> ${booking.bookingInfo.bookedTime}</p>
+                            </div>
+                           
+
+                        `;
+                        container.appendChild(bookingElement);
+                    });
+        
+       
+    </script>
+</body>
+</html>

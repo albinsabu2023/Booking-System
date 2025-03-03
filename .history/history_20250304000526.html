@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Bookings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- navbar -->
+        <nav class="navbar">
+            <div class="navbar_left">
+                <ul>
+                    <li>
+                        <img src="./assets/tata.png" height="30" width="65" >
+                    </li>
+                   
+                    <li><a href="index.html">book now</a> </li>
+                    <li> <a href="history.html">view Bookings</a> </li>
+                     <li><a href="preview.html">preview</a></li>
+                </ul>
+            </div>
+            <div class="navbar_right">
+                <ul>
+                    <li>something</li>
+                    <li>something</li>
+                    <li>Profile</li>
+                </ul>
+            </div>
+        </nav>
+    <h2>Pre-Booked Rooms</h2>
+    <div id="bookings-container" class="bookings-container"></div>
+     <!-- Modal for Viewing Room -->
+    <div id="room-modal" class="modal">
+        
+        <div class="modal-content">
+            <div class="booking-img-view">
+            <img src="" alt="" id="booking-img-view" >
+        </div>
+        <div>
+             <button class="close-btn" onclick="closeModal()">X</button>
+            <h3 id="modal-title"></h3>
+            <p><strong>Date:</strong> <span id="modal-date"></span></p>
+            <p><strong>Time Slot:</strong> <span id="modal-timeSlot"></span></p>
+            <p><strong>Purpose:</strong> <span id="modal-purpose"></span></p>
+            <p><strong>Seats:</strong> <span id="modal-seats"></span></p>
+            <p><strong>Booked Time:</strong> <span id="modal-bookedTime"></span></p>
+            <button  class="cancel" onclick="cancel()">cancel</button>
+        </div>
+           
+            
+        </div>
+    </div>
+
+    <script>
+       
+        
+        // Function to fetch and display bookings
+          const container = document.getElementById("bookings-container");
+        let data=JSON.parse(localStorage.getItem("bookingData"));
+        console.log(data);
+        data.map((booking,index)=> {
+          
+            const bookingElement = document.createElement("div");
+            bookingElement.classList.add("booking-card");
+            bookingElement.innerHTML = `
+                <div class="booking-img">
+                    <h3>${booking.bookingInfo.location} - ${booking.bookingInfo.block}</h3>
+                    <img src="./assets/${booking.bookingInfo.location}.jpg"  alt="logo">
+                </div>
+                <div class="booking-history-content">
+                    
+                    <div>
+                        <p><strong>Date:</strong> ${booking.bookingInfo.date}</p>
+                        <p><strong>Time Slot:</strong> ${booking.bookingInfo.timeSlot}</p>
+                       
+                    </div>
+                    <div class="booking-options">
+                    <button class="view" onclick="viewRoom(${index})">view</button>
+                   
+                </div>  
+                </div>   
+                  
+            `;
+                container.appendChild(bookingElement);
+            });
+        function viewRoom(idx) {
+            const booking = data[idx];
+            document.getElementById("modal-title").innerText = `${booking.bookingInfo.location} - ${booking.bookingInfo.block}`;
+            document.getElementById("modal-date").innerText = booking.bookingInfo.date;
+            document.getElementById("modal-timeSlot").innerText = booking.bookingInfo.timeSlot;
+            document.getElementById("modal-purpose").innerText = booking.bookingInfo.purpose;
+            document.getElementById("modal-seats").innerText = booking.bookingInfo.seats;
+            document.getElementById("modal-bookedTime").innerText = booking.bookingInfo.bookedTime;
+            document.getElementById("room-modal").style.display = "flex"; // Show modal
+            document.getElementById("booking-img-view").setAttribute("src",`./assets/${booking.bookingInfo.location}.jpg`);
+        }
+        function closeModal() {
+            document.getElementById("room-modal").style.display = "none";
+        }
+       
+    </script>
+</body>
+</html>

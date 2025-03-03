@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <nav class="navbar">
+            <div class="navbar_left">
+                <ul>
+                    <li>
+                        <img src="./assets/tata.png" height="30" width="65" >
+                    </li>
+                   
+                    <li> <a href="index.html"> Book Now</a></li>
+                    <li> <a href="history.html">view Bookings</a></li>
+                </ul>
+            </div>
+            <div class="navbar_right">
+                <ul>
+                    <li>something</li>
+                    <li>something</li>
+                    <li>Profile</li>
+                </ul>
+            </div>
+        </nav>
+    <div class="preview-body">
+    <div class="preview" id="preview">
+        
+    </div>
+    </div>
+</body>
+<script>
+   
+    const bookingData = localStorage.getItem("bookingData");
+    
+   
+    
+    if (bookingData) {
+        const bookings = JSON.parse(bookingData);
+        const booking=bookings[0];
+     
+        document.getElementById("preview").innerHTML = `
+            <h2>Your Last Booking Preview</h2>
+            <p><strong>Location:</strong> ${booking.location}</p>
+            <p><strong>Block:</strong> ${booking.block}</p>
+            <p><strong>Date:</strong> ${booking.date}</p>
+            <p><strong>Time Slot:</strong> ${booking.timeSlot}</p>
+            <p><strong>Purpose:</strong> ${booking.purpose}</p>
+            <p><strong>Seats:</strong> ${booking.seats}</p>
+            <p><strong>BookedTime:</strong> ${booking.bookedTime}</p>
+            <button onclick="window.print()" >print</button>
+        `;
+    } else {
+        document.body.innerHTML += `<p>Something went wrong.</p>`;
+    }
+
+
+</script>
+</html>
