@@ -4,112 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <!-- navbar -->
-        <nav class="navbar">
-            <div class="navbar_left">
-                <ul>
-                    <li>
-                        <img src="./assets/tata.png" height="30" width="65" >
-                    </li>
-                   
-                    <li> <a href="index.html">Book Now</a></li>
-                    <li><a href="history.html">view Bookings</a> </li>
-                     <li><a href="preview.html">preview</a></li>
-                </ul>
-            </div>
-            <div class="navbar_right">
-                <ul>
-                   
-                    <li>something</li>
-                    <li>Profile</li>
-                </ul>
-            </div>
-        </nav>
 
-    <!-- container -->
-        <div class="container">
-            <!-- <p id="welcome-note">Hello</p> -->
-            <div class="container_left">
-                <img src="assets/workplace.svg"    alt="">
-                <div class="alert alert-success" id="alert" class="alert" role="alert"  style="display:none">
-                    A simple success alert—check it out!
-                    
-                </div> 
-            </div>
-            <div class="container_right">
-                <form action="preview.html" method="get" onsubmit=" bookRoom(event);return false;">
-                  <div class="loc">
-                      <div>
-                        <label for="loc">Location:</label>
-                      </div>
-                      <select name="loc" id="location-select">
-                            <option value="tcs-cen">TCS Centre Kochi</option>
-                            <option value="tcs-vsm">TCS Vismaya Kochi</option>
-                            <option value="tcs-tvm">TCS Trivandrum</option>
-                            <option value="tcs-mum">TCS Mumbai</option>
-                        </select>
-                  </div>
-                  <div class="block">
-                    <div><label for="block">Choose Building:</label></div>
-                    <div>
-                        <select name="blocks" id="blocks-select">
-                        <option value="b1">block1</option>
-                        <option value="b2">block1</option>
-                        <option value="b3">block2</option>
-                        <option value="b4">block4</option>
-                    </select>
-                    </div>
-                  </div>
-                  <div class="date">
-                    <div><label for="date">Select Date:</label></div>
-                    <div> <input type="date" id="date" ></div>
-                  </div>
-                  <div class="time">
-                    <div><label for="time">Select a slot:</label></div>
-                    <div><select name="time-slot" id="time-slot">
-                        <option value="mrng">9:00 am -12:00 pm</option>
-                        <option value="afternoon">12:00 pm- 04:00 pm</option>
-                        <option value="night">07:00 pm- 11:00 pm</option>
-                    </select></div>
-                  </div>
-                  <div class="purpose">
-                    <div><label for="purpose">Purpose:</label></div>
-                    <div><select name="purpose" id="purpose">
-                        <option value="event">For hosting Event</option>
-                        <option value="work">For complete work</option>
-                        <option value="entertainment">Entertainment</option>
-                    </select></div>
-                  </div>
-                  <div class="seats">
-                    <div><label for="seats">No of Seats:</label></div>
-                    <div><input type="number" max="2000" min="1" id="seats"></div>
-                  </div>
-                  
-                  <button type="submit" class="btn-primary submit-btn " submit">Book</button>
-                 
-                 
-                </form>
-                
-            </div>
-            
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="./assets/tata.png" height="40" width="100" alt="Logo">
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         </div>
-        
-         
-    <!-- footer -->
-     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-    <script src="index.js"></script>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-calendar-plus"></i> Book Now</a></li>
+            <li><a href="history.html"><i class="fas fa-history"></i> View Bookings</a></li>
+            <li><a href="preview.html"><i class="fas fa-eye"></i> Preview</a></li>
+            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+        </ul>
+    </div>
+
+    <!-- Content -->
+     <div class="content">
+        <div class="welcome-box">
+            <div>
+                <p class="welcome-text">Welcome To Tcs Booking System</p>
+            </div>
+        </div>
+           
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card p-4 shadow">
+                        <form action="" method="get" onsubmit="bookRoom(event); return false;">
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="emp-id" class="mr-3">Employee ID:</label>
+                                <input type="text" id="emp-id" class="form-control w-75" required>
+                            </div>
+                            
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="location-select" class="mr-3">Location:</label>
+                                <select id="location-select" class="form-control w-75">
+                                    <option value="tcs-cen">TCS Centre Kochi</option>
+                                    <option value="tcs-vsm">TCS Vismaya Kochi</option>
+                                    <option value="tcs-tvm">TCS Trivandrum</option>
+                                    <option value="tcs-mum">TCS Mumbai</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="blocks-select" class="mr-3">Choose Building:</label>
+                                <select id="blocks-select" class="form-control w-75">
+                                    <option value="b1">Block 1</option>
+                                    <option value="b2">Block 2</option>
+                                    <option value="b3">Block 3</option>
+                                    <option value="b4">Block 4</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="date" class="mr-3">Select Date:</label>
+                                <input type="date" id="date" class="form-control w-75">
+                            </div>
+
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="time-slot" class="mr-3">Select a slot:</label>
+                                <select id="time-slot" class="form-control w-75">
+                                    <option value="mrng">9:00 AM - 12:00 PM</option>
+                                    <option value="afternoon">12:00 PM - 4:00 PM</option>
+                                    <option value="night">7:00 PM - 11:00 PM</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="purpose" class="mr-3">Purpose:</label>
+                                <select id="purpose" class="form-control w-75">
+                                    <option value="event">For Hosting Event</option>
+                                    <option value="work">For Work</option>
+                                    <option value="entertainment">Entertainment</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group d-flex justify-content-between">
+                                <label for="seats" class="mr-3">Number of Seats:</label>
+                                <input type="number" id="seats" min="1" max="2000" class="form-control w-75">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Book</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="alert-box" id="alertBox"></div>
+        </div>
+    </div>
+
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    let today = new Date().toISOString().split("T")[0]; 
-    document.getElementById("date").setAttribute("min", today);
-});
-</script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("collapsed");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let today = new Date().toISOString().split("T")[0];
+            document.getElementById("date").setAttribute("min", today);
+        });
+    </script>
+
+    <script src="index.js" ></script>
 </body>
 </html>

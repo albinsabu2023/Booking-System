@@ -1,14 +1,6 @@
-gsap.to(".box", { duration: 2, x: 15, rotation: 360, scale: 1.5 });
-// var welcome = document.getElementById("welcome-note");
-// gsap.to(welcome, {
-//   duration: 2,
-//   text: "This is the new text",
-//   ease: "none",
-// });
-
-function bookRoom() {
-  // event.preventDefault();
-
+function bookRoom(event) {
+  event.preventDefault();
+  const empId = document.getElementById("emp-id").value;
   const location = document.getElementById("location-select").value;
   const block = document.getElementById("blocks-select").value;
   const date = document.getElementById("date").value;
@@ -16,6 +8,7 @@ function bookRoom() {
   const purpose = document.getElementById("purpose").value;
   const seats = document.getElementById("seats").value;
   const bookedTime = new Date().toLocaleString();
+
   const bookingInfo = {
     location: location,
     block: block,
@@ -24,8 +17,9 @@ function bookRoom() {
     purpose: purpose,
     seats: seats,
     bookedTime: bookedTime,
+    empId: empId,
   };
-  const alertBox = document.getElementById("alert");
+  let alertBox = document.getElementById("alertBox");
   if (
     location === "" ||
     block === "" ||
@@ -44,6 +38,15 @@ function bookRoom() {
     alertBox.style.display = "block";
     alertBox.classList.remove("alert-danger");
     alertBox.classList.add("alert-success");
+    // adding image
+    let img = document.createElement("img");
+    img.src = "/assets/succes.gif"; // Set image path
+    img.alt = "succes"; // Set alternative text
+    img.style.width = "50px"; // Set width (optional)
+    img.style.height = "50px"; // Set height (optional)
+    img.className = "alert-img";
+    // Append image to alertBox
+    alertBox.appendChild(img);
   }
 
   // console.log(bookingInfo);
@@ -61,7 +64,7 @@ function bookRoom() {
 
   setTimeout(() => {
     window.location.href = "preview.html";
-  }, 1000);
+  }, 2000);
 }
 
 // Handle click events for viewing and deleting

@@ -3,60 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   <link rel="stylesheet" href="style.css">
+    <title>Booking Preview</title>
+    <link rel="stylesheet" href="preview.css">
 </head>
 <body>
-     <nav class="navbar">
-            <div class="navbar_left">
-                <ul>
-                    <li>
-                        <img src="./assets/tata.png" height="30" width="65" >
-                    </li>
-                   
-                    <li> <a href="index.html"> Book Now</a></li>
-                    <li> <a href="history.html">view Bookings</a></li>
-                </ul>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="./assets/tata.png" height="40" width="80" >
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">📅 Book Now</a></li>
+            <li><a href="history.html">📜 View Bookings</a></li>
+            <li><a href="preview.html" class="active">🔍 Preview</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="preview-body">
+            <div class="preview" id="preview">
+                <!-- Booking details will be inserted here -->
             </div>
-            <div class="navbar_right">
-                <ul>
-                    <li>something</li>
-                    <li>something</li>
-                    <li>Profile</li>
-                </ul>
-            </div>
-        </nav>
-    <div class="preview-body">
-    <div class="preview" id="preview">
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+        }
+
+        // Fetch Booking Data
+        const bookingData = localStorage.getItem("bookingData");
+        if (bookingData) {
+            const bookings = JSON.parse(bookingData);
+            const booking = bookings[0];
+            document.getElementById("preview").innerHTML = `
+                <h2>📝 Your Last Booking Preview</h2>
+                <div class="booking-detail">
+            <p class="label">👨‍💼 Employee ID:</p>
+            <p class="value">${booking.bookingInfo.empId}</p>
+        </div>
+
+        <div class="booking-detail">
+            <p class="label">📍 Location:</p>
+            <p class="value">${booking.bookingInfo.location}</p>
+        </div>
+
+        <div class="booking-detail">
+            <p class="label">🏢 Block:</p>
+            <p class="value">${booking.bookingInfo.block}</p>
+        </div>
+
+        <div class="booking-detail">
+            <p class="label">📅 Date:</p>
+            <p class="value">${booking.bookingInfo.date}</p>
+        </div>
+
+        <div class="booking-detail">
+            <p class="label">⏳ Time Slot:</p>
+            <p class="value">${booking.bookingInfo.timeSlot}</p>
+        </div>
+
+        <div class="booking-detail">
+            <p class="label">🎯 Purpose:</p>
+            <p class="value">${booking.bookingInfo.purpose}</p>
+        </div>
+
+        <div class="booking-detail">
+            <p class="label">🪑 Seats:</p>
+            <p class="value">${booking.bookingInfo.seats}</p>
+        </div>
+
+        <div class="booking-detail">
+            <p class="label">⏰ Booked Time:</p>
+            <p class="value">${booking.bookingInfo.bookedTime}</p>
+        </div>
+
+        <button class="print-btn" onclick="window.print()">🖨 Print</button>
+
+            `;
+        } else {
+            document.getElementById("preview").innerHTML = `<p>⚠ No data added.</p>`;
+        }
         
-    </div>
-    </div>
+       
+        
+    </script>
+
 </body>
-<script>
-   
-    const bookingData = localStorage.getItem("bookingData");
-    
-   
-    
-    if (bookingData) {
-        const bookings = JSON.parse(bookingData);
-        const booking=bookings[0];
-        console.log(booking);
-        document.getElementById("preview").innerHTML = `
-            <h2>Your Last Booking Preview</h2>
-            <p><strong>Location:</strong> ${booking.bookingInfo.location}</p>
-            <p><strong>Block:</strong> ${booking.bookingInfo.block}</p>
-            <p><strong>Date:</strong> ${booking.bookingInfo.date}</p>
-            <p><strong>Time Slot:</strong> ${booking.bookingInfo.timeSlot}</p>
-            <p><strong>Purpose:</strong> ${booking.bookingInfo.purpose}</p>
-            <p><strong>Seats:</strong> ${booking.bookingInfo.seats}</p>
-            <p><strong>BookedTime:</strong> ${booking.bookingInfo.bookedTime}</p>
-            <button onclick="window.print()" >print</button>
-        `;
-    } else {
-        document.body.innerHTML += `<p>Something went wrong.</p>`;
-    }
-
-
-</script>
 </html>
