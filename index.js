@@ -59,6 +59,22 @@ function bookRoom(event) {
   // Add the new booking at the start of the array
   bookingData.unshift(updatedBooking);
 
+  // Check if the room is already booked
+  const isRoomBooked = bookingData.some(
+    (booking) =>
+      booking.bookingInfo.location === location &&
+      booking.bookingInfo.block === block &&
+      booking.bookingInfo.date === date &&
+      booking.bookingInfo.timeSlot === timeSlot
+  );
+
+  if (isRoomBooked) {
+    alertBox.innerText = "Room already booked for the selected time slot";
+    alertBox.style.display = "block";
+    alertBox.classList.remove("alert-success");
+    alertBox.classList.add("alert-danger");
+    return;
+  }
   // Store the updated array in localStorage
   localStorage.setItem("bookingData", JSON.stringify(bookingData));
 

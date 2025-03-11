@@ -83,7 +83,13 @@
             tableBody.appendChild(row);
         });
        }
-
+        const bookingDate = new Date(booking.bookingInfo.date);
+            const today = new Date();
+            const timeDiff = Math.abs(bookingDate - today);
+            const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            const loader = document.createElement("p");
+            loader.innerText = `Days until booking: ${daysDiff}`;
+            document.querySelector(".modal-content").appendChild(loader);
         function viewRoom(idx) {
             const booking = data[idx];
             document.getElementById("modal-title").innerText = `${booking.bookingInfo.location} - ${booking.bookingInfo.block}`;
@@ -93,6 +99,7 @@
             document.getElementById("modal-seats").innerText = booking.bookingInfo.seats;
             document.getElementById("modal-bookedTime").innerText = booking.bookingInfo.bookedTime;
             document.getElementById("room-modal").style.display = "flex";
+        
         }
 
         function closeModal() {
